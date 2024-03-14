@@ -29,7 +29,7 @@ describe('Given a request to update users using PUT', () => {
     })
 
     // BUG - when updating a resource without valid authentication system should return 401 but instead it returns 404 (user not found)
-    it.skip('should return a 401 status code if access token is missing or invalid',  async ()=> {
+    it('should return a 401 status code if access token is missing or invalid',  async ()=> {
         // Given
         const user = await users.createRandomUser()
         // When
@@ -63,7 +63,7 @@ describe('Given a request to update users using PUT', () => {
         expect(response.body.message).toBe('Resource not found')
     })
     // BUG - when trying to update partialy a resource using PUT requests the system should return a error. PUT request are used to modify the entire resource
-    it.skip('should return a 400 status code if request data is invalid',  async ()=> {
+    it('should return a 400 status code if request data is invalid',  async ()=> {
         // Given
         const user = await users.createRandomUser()
         // When

@@ -23,7 +23,7 @@ describe('Giving a request to POST /users ', () =>{
         expect(deleteUser.status).toEqual(404)
     })
     // Bad practice - in order to save load on the DB the system should first check if the user has access before making a call to DB
-    it.skip('should return a 401 status code if access token is missing or invalid', async ()=> {
+    it('should return a 401 status code if access token is missing or invalid', async ()=> {
         // When
         const response = await request(URL)
             .delete(`/users/1111`)

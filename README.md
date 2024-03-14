@@ -45,10 +45,11 @@ npm test
 While exploring the functionality of the gorest public APIs i discovered the bellow inconsistencies:
 ### GET request
 > Bad practice - 401 error message is different from POST users
-### PUT requests
+### PUT requests: 2 failing tests
 > BUG - when updating an user without valid authentication system should return 401 but instead it returns 404 (user not found)
 
 > BUG - when trying to update partialy a resource using PUT requests the system should return a error. PUT request are used to modify the entire resource
-### DELETE request
+### DELETE request - 1 failing test
+Decided to fail the test here as I believe this is a critical requirement
 > Bad practice - in order to save load on the DB the system should first check if the user has access before making a call to DB
 
