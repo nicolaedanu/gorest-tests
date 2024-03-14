@@ -17,6 +17,8 @@ This project aims to test CRUD operations for user resources in API version 2. I
 - supertest - HTTP client
 - dotenv - facilitate the loading of environment variables
 - @types/jest - to support with autocomplete in VS code
+### CI/CD
+https://github.com/nicolaedanu/gorest-tests/actions
 
 ## Installation
 
