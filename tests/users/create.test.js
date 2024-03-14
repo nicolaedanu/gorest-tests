@@ -26,10 +26,10 @@ describe('Giving a request to POST /users ', () =>{
         expect(response.status).toEqual(201)
         expect(userCreated.status).toBe(200)
         expect(response.body).toHaveProperty('id')
-        expect(response.body.name).toEqual(userData.name);
-        expect(response.body.gender).toEqual(userData.gender);
-        expect(response.body.email).toEqual(userData.email);
-        expect(response.body.status).toEqual(userData.status);
+        expect(response.body.name).toEqual(userData.name)
+        expect(response.body.gender).toEqual(userData.gender)
+        expect(response.body.email).toEqual(userData.email)
+        expect(response.body.status).toEqual(userData.status)
     })
 
     it('should return a 422 status code if the user already exists', async () => {

@@ -35,11 +35,11 @@ describe('Given a request to GET /users', () =>{
         expect(response.body.length).toBe(2)
 
         response.body.forEach(user => {
-            expect(user).toHaveProperty('id');
-            expect(user).toHaveProperty('name');
-            expect(user).toHaveProperty('email');
-            expect(user).toHaveProperty('gender');
-            expect(user).toHaveProperty('status');
+            expect(user).toHaveProperty('id')
+            expect(user).toHaveProperty('name')
+            expect(user).toHaveProperty('email')
+            expect(user).toHaveProperty('gender')
+            expect(user).toHaveProperty('status')
         })
     })
 })
