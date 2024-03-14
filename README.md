@@ -58,5 +58,5 @@ While exploring the functionality of the gorest public APIs, I discovered the fo
 > BUG - when trying to update partialy a resource using PUT requests the system should return a error. PUT request are used to modify the entire resource
 ### DELETE request - 1 failing test
 I decided to fail the test here as I believe this is a critical requirement.
-> Bad practice - in order to save load on the DB the system should first check if the user has access before making a call to DB
+> Bad practice - system returns 404 instead of 401 when trying to delete an invalid user without authentication. In order to save load on the DB the system should first check if the user has access before making a call to DB
 
