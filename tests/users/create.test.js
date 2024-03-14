@@ -1,5 +1,6 @@
 const request = require('supertest')
 const config = require('../../lib/config')
+const users = require('../../lib/users')
 
 const URL = config.URL
 
@@ -20,8 +21,10 @@ describe('Giving a request to POST /users ', () =>{
             .set('Authorization', `Bearer ${process.env.ACCESS_CODE}`)
             .set('Content-Type', 'application/json')
             .send(userData)
+        const userCreated = await users.getUserById(response.body.id)
         // Then
         expect(response.status).toEqual(201)
+        expect(userCreated.status).toBe(200)
         expect(response.body).toHaveProperty('id')
         expect(response.body.name).toEqual(userData.name);
         expect(response.body.gender).toEqual(userData.gender);
@@ -77,7 +80,7 @@ describe('Giving a request to POST /users ', () =>{
         // When
         const response2 = await request(URL)
             .post('/users')
-            .set('Authorization', `Bearer wrong`)
+            .set('Authorization', `Bearer dummy`)
             .set('Content-Type', 'application/json')
             .send(userData)
         // Then
