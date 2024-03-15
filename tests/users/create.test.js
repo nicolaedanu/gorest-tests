@@ -30,6 +30,8 @@ describe('Giving a request to POST /users ', () =>{
         expect(response.body.gender).toEqual(userData.gender)
         expect(response.body.email).toEqual(userData.email)
         expect(response.body.status).toEqual(userData.status)
+        // Tierdown
+        await users.deleteUserById(response.body.id)
     })
 
     it('should return a 422 status code if the user already exists', async () => {
@@ -58,6 +60,9 @@ describe('Giving a request to POST /users ', () =>{
         expect(response2.status).toEqual(422)
         expect(response2.body[0].field).toBe('email')
         expect(response2.body[0].message).toBe(`has already been taken`)
+
+        // Tierdown
+        await users.deleteUserById(response.body.id)
 
     })
 

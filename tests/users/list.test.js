@@ -9,7 +9,7 @@ require('dotenv').config()
 describe('Given a request to GET /users', () =>{
     it('should return a list of users and a 200 status code if access token is valid', async () => {
         // Given
-        await users.createRandomUser()
+        const user1 = await users.createRandomUser()
         // When 
         const response = await request(URL)
             .get('/users')
@@ -18,12 +18,15 @@ describe('Given a request to GET /users', () =>{
         expect(response.status).toEqual(200)
         expect(response.body).toBeInstanceOf(Array)
         expect(response.body.length).toBeGreaterThan(0)
+
+        // Tierdown
+        await users.deleteUserById(user1.id)
     })
     
     it('should return users based on query parameters and a 200 status code if access token is missing', async ()=> {
         // Given
-        await users.createRandomUser()
-        await users.createRandomUser()
+        const user1 = await users.createRandomUser()
+        const user2 = await users.createRandomUser()
         // When
         const response = await request(URL)
             .get('/users')
@@ -41,6 +44,10 @@ describe('Given a request to GET /users', () =>{
             expect(user).toHaveProperty('gender')
             expect(user).toHaveProperty('status')
         })
+
+        // Tierdown
+        await users.deleteUserById(user1.id)
+        await users.deleteUserById(user2.id)
     })
 })
 
@@ -71,6 +78,8 @@ describe('Given a request to GET /users/{userId}', () => {
         expect(response.body.gender).toEqual(user.gender)
         expect(response.body.status).toEqual(user.status)
         
+        // Tierdown
+        await users.deleteUserById(user.id)
     })
 
     it('should return status code 404 and an error message if user not found and token is missing', async () => {

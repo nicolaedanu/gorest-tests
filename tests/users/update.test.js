@@ -26,6 +26,9 @@ describe('Given a request to update users using PUT', () => {
         // Then
         expect(response.status).toEqual(200)
         expect(response.body).toMatchObject(updatedUserData)
+
+        // Tierdown
+        await users.deleteUserById(user.id)
     })
 
     // BUG - when updating a resource without valid authentication system should return 401 but instead it returns 404 (user not found)
@@ -50,6 +53,9 @@ describe('Given a request to update users using PUT', () => {
         // Then
         expect(response2.status).toEqual(401)
         expect(response.body.message).toEqual('Authentication failed')
+
+        // Tierdown
+        await users.deleteUserById(user.id)
     })
 
     it('should return a 404 status code if the user ID does not exist',  async ()=> {
@@ -98,6 +104,9 @@ describe('Given a request to update users using PUT', () => {
         // Then
         expect(response3.status).toEqual(400)
         expect(response.body.message).toEqual('Error occurred while parsing request parameters')
+
+        // Tierdown
+        await users.deleteUserById(user.id)
     })
 })
 
@@ -123,6 +132,9 @@ describe('Given a request to update users using PATCH', () => {
         expect(response.body.gender).toEqual(user.gender)
         expect(response.body.email).toEqual(user.email)
         expect(response.body.status).toEqual("inactive")
+
+        // Tierdown
+        await users.deleteUserById(user.id)
     })
 
     it('should return a 404 status code if the user ID does not exist',  async ()=> {
